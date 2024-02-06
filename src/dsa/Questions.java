@@ -73,7 +73,7 @@ public class Questions {
 		}
 		return returnList;
 	}
-	
+
 	// 5 K Frequency
 	public int[] topKFrequent(int[] nums, int k) {
 		Map<Integer, Integer> map = new HashMap<>();
@@ -94,5 +94,29 @@ public class Questions {
 		}
 
 		return result;
+	}
+
+	// 6 Product of Array Except Self
+	public int[] productExceptSelf(int[] nums) {
+		int[] left = new int[nums.length];
+		int[] right = new int[nums.length];
+		int[] product = new int[nums.length];
+
+		right[nums.length - 1] = 1;
+		left[0] = 1;
+
+		for (int i = 1; i < left.length; i++) {
+			left[i] = nums[i - 1] * left[i - 1];
+		}
+
+		for (int i = right.length - 2; i >= 0; i--) {
+			right[i] = nums[i + 1] * right[i + 1];
+		}
+
+		for (int i = 0; i < product.length; i++) {
+			product[i] = left[i] * right[i];
+		}
+
+		return product;
 	}
 }
