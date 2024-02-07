@@ -121,6 +121,7 @@ public class Questions {
 		return product;
 	}
 	
+	// 7 Valid Sudoku
 	public boolean isValidSudoku(char[][] board) {
 		// check row per row
 		for (int r = 0; r < 9; r++) {
@@ -188,5 +189,40 @@ public class Questions {
 			}
 		}
 		return true;
+	}
+
+	// 8 Encode and decode Strings
+	/*
+	 * Design an algorithm to encode a list of strings to string. The encoded string
+	 * is then sent over the network and is decoded back to the original list of
+	 * strings. Please implement encode and decode.
+	 */
+	public String encode(List<String> strs) {
+		StringBuilder encoded = new StringBuilder("");
+		for (int i = 0; i < strs.size(); i++) {
+			if (i != strs.size()) {
+				encoded.append(String.valueOf(strs.get(i).length()));
+				encoded.append("%");
+			}
+			encoded.append(strs.get(i));
+		}
+		return encoded.toString();
+	}
+
+	public List<String> decode(String str) {
+		List<String> decoded = new ArrayList<>();
+		int i = 0;
+		int j;
+		int length = str.length();
+		while (i < length) {
+			j = i;
+			while (str.charAt(j) != '%') {
+				j++;
+			}
+			int size = Integer.valueOf(str.substring(i, j));
+			decoded.add(str.substring(j + 1, j + 1 + size));
+			i = i + 1 + 1 + size;
+		}
+		return decoded;
 	}
 }
