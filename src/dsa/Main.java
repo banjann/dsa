@@ -1,9 +1,5 @@
 package dsa;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -19,10 +15,6 @@ public class Main {
                 {'.','.','.','.','8','.','.','7','9'}};
 		
 		Questions q = new Questions();
-		List<String> list = new ArrayList<>(Arrays.asList(new String[] {"we", "say", ":", "yes"}));
-		List<String> decoded = q.decode(q.encode(list));
-		System.out.println(decoded.toString());
-		
 	}
 
 }
