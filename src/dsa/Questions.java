@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Questions {
 
@@ -118,5 +119,74 @@ public class Questions {
 		}
 
 		return product;
+	}
+	
+	public boolean isValidSudoku(char[][] board) {
+		// check row per row
+		for (int r = 0; r < 9; r++) {
+			List<String> currentRow = new ArrayList<>();
+			Set<String> currentRowAsSet = new HashSet<>();
+			for (int c = 0; c < 9; c++) {
+				String element = String.valueOf(board[r][c]);
+				if (!".".equals(element)) {
+					currentRow.add(element);
+					currentRowAsSet.add(element);
+				}
+			}
+			if (currentRow.size() != currentRowAsSet.size()) {
+				return false;
+			}
+		}
+
+		// check per column
+		for (int c = 0; c < 9; c++) {
+			List<String> currentCol = new ArrayList<>();
+			Set<String> currentColAsSet = new HashSet<>();
+			for (int r = 0; r < 9; r++) {
+				String element = String.valueOf(board[r][c]);
+				if (!".".equals(element)) {
+					currentCol.add(element);
+					currentColAsSet.add(element);
+				}
+			}
+			if (currentCol.size() != currentColAsSet.size()) {
+				return false;
+			}
+		}
+
+		// check each sub matrix
+		for (int r = 0; r < 9; r++) {
+			for (int c = 0; c < 9; c++) {
+				ArrayList<String> submatrixAsList = new ArrayList<>();
+				Set<String> submatrixAsSet = new HashSet<>();
+				int subMatrix_r = 0;
+				int subMatrix_c = 0;
+				if (3 <= r && r < 6) {
+					subMatrix_r = 3;
+				}
+				if (r >= 6) {
+					subMatrix_r = 6;
+				}
+				if (3 <= c && c < 6) {
+					subMatrix_c = 3;
+				}
+				if (c >= 6) {
+					subMatrix_c = 6;
+				}
+				for (int i = subMatrix_r; i < subMatrix_r + 3; i++) {
+					for (int j = subMatrix_c; j < subMatrix_c + 3; j++) {
+						String element = String.valueOf(board[i][j]);
+						if (!".".equals(element)) {
+							submatrixAsList.add(element);
+							submatrixAsSet.add(element);
+						}
+					}
+				}
+				if (submatrixAsList.size() != submatrixAsSet.size()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
