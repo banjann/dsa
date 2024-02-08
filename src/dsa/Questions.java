@@ -225,4 +225,32 @@ public class Questions {
 		}
 		return decoded;
 	}
+
+	// 9 Longest Consecutive Sequence
+	public int longestConsecutive(int[] nums) {
+		int mostCons = 0;
+		Set<Integer> set = new HashSet<>();
+		for (int num : nums) {
+			set.add(num);
+		}
+		for (int num : nums) {
+			int prev = num - 1;
+			int next = num + 1;
+			int consecutive = 1;
+			while (set.contains(prev)) {
+				set.remove(prev);
+				prev--;
+				consecutive++;
+			}
+			while (set.contains(next)) {
+				set.remove(next);
+				next++;
+				consecutive++;
+			}
+			if (consecutive > mostCons) {
+				mostCons = consecutive;
+			}
+		}
+		return mostCons;
+	}
 }
