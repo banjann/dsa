@@ -253,4 +253,26 @@ public class Questions {
 		}
 		return mostCons;
 	}
+	
+	// 10 Valid Palindrome
+	public boolean isPalindrome(String s) {
+		StringBuilder sb = new StringBuilder("");
+		char[] cs = s.toCharArray();
+		for (char c : cs) {
+			if (Character.isLetterOrDigit(c)) {
+				sb.append(c);
+			}
+		}
+		String cleanString = sb.toString().toLowerCase();
+		int start = 0;
+		int end = cleanString.length() - 1;
+		while (start <= end) {
+			if (cleanString.charAt(start) != cleanString.charAt(end)) {
+				return false;
+			}
+			start++;
+			end--;
+		}
+		return true;
+	}
 }
