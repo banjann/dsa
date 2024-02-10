@@ -266,7 +266,7 @@ public class Questions {
 		String cleanString = sb.toString().toLowerCase();
 		int start = 0;
 		int end = cleanString.length() - 1;
-		while (start <= end) {
+		while (start < end) {
 			if (cleanString.charAt(start) != cleanString.charAt(end)) {
 				return false;
 			}
@@ -275,4 +275,22 @@ public class Questions {
 		}
 		return true;
 	}
+
+	// 11 Two Sum II - Input Array Is Sorted
+	public int[] twooSum(int[] numbers, int target) {
+		int[] indices = new int[2];
+		int left = 0;
+		int right = numbers.length - 1;
+		while ((numbers[right] + numbers[left]) != target) {
+			if ((numbers[right] + numbers[left]) > target) {
+				right--;
+			} else {
+				left++;
+			}
+		}
+		indices[0] = left + 1;
+		indices[1] = right + 1;
+		return indices;
+	}
+
 }
